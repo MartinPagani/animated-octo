@@ -12,12 +12,13 @@ var Player = function(name, color, position, direction) {
         });
 
     var singleGeometry = new THREE.Geometry();
-
     vehiculeMesh = new THREE.ConeGeometry(5, 20, 32);
     this.graphic = new THREE.Mesh(vehiculeMesh, this.material);
-    this.graphic.position.z = 6;
+    this.graphic.position.x = position.x;
+    this.graphic.position.y = position.y;
+    this.graphic.position.z = 1;
 
-    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), this.direction+(3*Math.PI/2));
+    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), this.direction -Math.PI/2);
 };
 
 Player.prototype.dead = function () {
@@ -27,6 +28,17 @@ Player.prototype.dead = function () {
         jQuery('#'+this.name+' >.life').text("Tu es mort !");
         init();
 }
+
+Player.prototype.loseLife = function () {
+    this.life -= 1;
+    console.log(this.life);
+    if (this.life == 0)
+    {
+        this.dead();
+    }
+    this.position = new THREE.Vector3(0,0,1);
+    this.speed = 0;
+};
 
 Player.prototype.accelerate = function (distance) {
     var max = 2;
@@ -51,13 +63,16 @@ Player.prototype.displayInfo = function () {
 }
 
 Player.prototype.turnRight = function (angle) {
-    this.direction += angle;
-    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), +angle);
+    this.direction -= angle;
+    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), -angle);
 };
 
 Player.prototype.turnLeft = function (angle) {
     this.direction += angle;
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), angle);
+    console.log(this.direction);
+    console.log(this.graphic.angle);
+    console.log("----");
 };
 
 Player.prototype.move = function () {
@@ -81,5 +96,5 @@ Player.prototype.move = function () {
     
     light1.position.x = this.position.x;
     light1.position.y = this.position.y;
-   //light1.position.z = this.graphic.position.z + 500;
+    light1.position.z = this.graphic.position.z + 10;
 };

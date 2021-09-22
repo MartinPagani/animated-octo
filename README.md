@@ -21,12 +21,12 @@ A video game with three.js
 - [X] : As a player, I want to have a ground when I start the game //Added a redblock at the center of the grid. + removed the translation between ground referential and player graphic referential.
 - [X] : As a player, I want to decrease my life when I fall // Added a loseLife function.
 - [X] : As a player, I want a better light to be able to see all the map // Increased light size. Maybe make it sdtick to the middle ?
+- [X] : As a player, I want to see ennemy
 
 **WIP**
 
 **TO DO**
 
-- [ ] : As a player, I want to see ennemy
 - [ ] : As a player, I want to destroy ennemy when I shot them
 - [ ] : As a ennemy, I want to move on one axe
 - [ ] : As a player, I want to decrease my life when I am touch by an ennemy

@@ -1,4 +1,4 @@
-var Player = function(name, color, position, direction) {
+var Player = function(name, color, position, direction, ) {
 
     this.name = name;
     this.position = position;
